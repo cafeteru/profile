@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public interface PriceApi {
     @Operation(summary = "REST endpoint for querying")
     @ApiResponse(responseCode = "200", description = "Success")
-    @GetMapping("/consult")
-    ResponseEntity<PriceRS> consult(
+    @GetMapping("/getPrice")
+    ResponseEntity<PriceRS> getPrice(
             @Parameter(description = "Application date", example = "2020-06-14-00.00.00")
             String applicationDate,
             @Parameter(description = "Product identifier", example = "35455")

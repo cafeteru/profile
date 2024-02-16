@@ -15,9 +15,9 @@ public class PriceController implements PriceApi {
     private final DateConverter dateConverter;
 
     @Override
-    public ResponseEntity<PriceRS> consult(String applicationDate, Integer idProduct, Integer idBrand) {
+    public ResponseEntity<PriceRS> getPrice(String applicationDate, Integer idProduct, Integer idBrand) {
         var localDate = dateConverter.stringToLocalDateTime(applicationDate);
-        var priceRS = pricePort.consult(localDate, idProduct, idBrand);
+        var priceRS = pricePort.getPrice(localDate, idProduct, idBrand);
         return ResponseEntity.ok(priceRS);
     }
 }
