@@ -1,5 +1,5 @@
 name: Spring Boot CI
-run-name: ${{ github.actor }} is checking backend 🏍️
+run-name: ${{ github.actor }} is checking the project
 on: [push]
 jobs:
   build:
