@@ -10,13 +10,13 @@ import java.time.format.DateTimeParseException;
 @Component
 @Slf4j
 public class DateConverter {
-    public static final String PATTERN = "yyyy-MM-dd-HH.mm.ss";
+    public final String PATTERN = "yyyy-MM-dd-HH.mm.ss";
 
     public LocalDateTime stringToLocalDateTime(String applicationDate) {
         try {
             var formatter = DateTimeFormatter.ofPattern(PATTERN);
             return LocalDateTime.parse(applicationDate, formatter);
-        } catch (DateTimeParseException e) {
+        } catch (NullPointerException | DateTimeParseException e) {
             log.error("Invalid LocalDateTime: " + applicationDate, e);
             throw new IllegalArgumentException("Invalid LocalDateTime: " + applicationDate, e);
         }
@@ -26,7 +26,7 @@ public class DateConverter {
         try {
             var formatter = DateTimeFormatter.ofPattern(PATTERN);
             return localDateTime.format(formatter);
-        } catch (DateTimeParseException e) {
+        } catch (NullPointerException e) {
             log.error("Invalid LocalDateTime: " + localDateTime, e);
             throw new IllegalArgumentException("Invalid LocalDateTime: " + localDateTime, e);
         }
