@@ -9,11 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfig {
 
-    @Bean
-    public OpenAPI customOpenAPI() {
-        return new OpenAPI().info(getInfo());
-    }
-
     private static Info getInfo() {
         Contact email = new Contact().email("cafeteru.dev@gmail.com");
         return new Info()
@@ -21,5 +16,10 @@ public class OpenApiConfig {
                 .description("Profile Exam Backend Skills")
                 .version("1.0")
                 .contact(email);
+    }
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI().info(getInfo());
     }
 }

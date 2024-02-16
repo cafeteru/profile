@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Builder
 @Data
@@ -17,7 +16,7 @@ public class PriceRS {
     private Integer productId;
     private Integer brandId;
     private Integer priceList;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private String startDate;
+    private String endDate;
     private BigDecimal finalPrice;
 }
