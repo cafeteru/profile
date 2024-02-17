@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Import(DateConverter.class)
 class PriceRepositoryTest {
     @Autowired
-    private PriceRepository repository;
+    private PriceRepository priceRepository;
 
     @Autowired
     private DateConverter dateConverter;
@@ -39,20 +39,20 @@ class PriceRepositoryTest {
                 createPrice("2020-06-15-00.00.00", "2020-06-15-11.00.00", 3, 1, BigDecimal.valueOf(30.50D)),
                 createPrice("2020-06-15-16.00.00", "2020-12-31-23.59.59", 4, 1, BigDecimal.valueOf(38.95D))
         );
-        repository.saveAll(priceList);
+        priceRepository.saveAll(priceList);
     }
 
     @Test
     void getPrice_with_date_before_all() {
         var dateTime = dateConverter.stringToLocalDateTime("2020-06-13-23.59.00");
-        var found = repository.getPrice(dateTime, productId, brandId);
+        var found = priceRepository.getPrice(dateTime, productId, brandId);
         assertTrue(found.isEmpty());
     }
 
     @Test
     void getPrice_with_date_after_all() {
         var localDateTime = dateConverter.stringToLocalDateTime("2026-06-13-23.59.00");
-        var found = repository.getPrice(localDateTime, productId, brandId);
+        var found = priceRepository.getPrice(localDateTime, productId, brandId);
         assertTrue(found.isEmpty());
     }
 
@@ -66,7 +66,7 @@ class PriceRepositoryTest {
     })
     void getPrice_with_date_return_one_result(String applicationDate) {
         var localDateTime = dateConverter.stringToLocalDateTime(applicationDate);
-        var found = repository.getPrice(localDateTime, productId, brandId);
+        var found = priceRepository.getPrice(localDateTime, productId, brandId);
         assertEquals(1, found.size());
         assertEquals(BigDecimal.valueOf(35.50), found.get(0).getPrice());
     }
@@ -81,7 +81,7 @@ class PriceRepositoryTest {
     })
     void getPrice_with_date_return_many_result(String applicationDate) {
         var localDateTime = dateConverter.stringToLocalDateTime(applicationDate);
-        var found = repository.getPrice(localDateTime, productId, brandId);
+        var found = priceRepository.getPrice(localDateTime, productId, brandId);
         assertFalse(found.isEmpty());
         assertNotEquals(1, found.size());
     }

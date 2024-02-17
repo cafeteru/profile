@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Objects;
+
 @RestController
 @RequiredArgsConstructor
 public class PriceController implements PriceApi {
@@ -16,8 +18,11 @@ public class PriceController implements PriceApi {
 
     @Override
     public ResponseEntity<PriceRS> getPrice(String applicationDate, Integer idProduct, Integer idBrand) {
+        // TODO: Check parameters are not null
         var localDate = dateConverter.stringToLocalDateTime(applicationDate);
         var priceRS = pricePort.getPrice(localDate, idProduct, idBrand);
-        return ResponseEntity.ok(priceRS);
+        return Objects.nonNull(priceRS) ?
+                ResponseEntity.ok(priceRS) :
+                ResponseEntity.noContent().build();
     }
 }

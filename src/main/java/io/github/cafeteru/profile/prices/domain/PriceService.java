@@ -20,6 +20,9 @@ public class PriceService implements PricePort {
     @Override
     public PriceRS getPrice(LocalDateTime applicationDate, Integer idProduct, Integer idBrand) {
         var priceList = repository.getPrice(applicationDate, idProduct, idBrand);
+        if (priceList.isEmpty()) {
+            return null;
+        }
         var result = priceList.size() > 1 ?
                 priceList.stream().max(Comparator.comparing(Price::getPriority)).get() :
                 priceList.get(0);
