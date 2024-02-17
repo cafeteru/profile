@@ -43,14 +43,14 @@ class PriceRepositoryTest {
     }
 
     @Test
-    void getPrice_with_date_before_all_should_be_empty() {
+    void when_getPrice_with_date_before_all_should_return_a_empty_list() {
         var dateTime = dateConverter.stringToLocalDateTime("2020-06-13-23.59.00");
         var found = priceRepository.getPrice(dateTime, productId, brandId);
         assertTrue(found.isEmpty());
     }
 
     @Test
-    void getPrice_with_date_after_all_should_be_empty() {
+    void when_getPrice_with_date_after_all_should_return_a_empty_list() {
         var localDateTime = dateConverter.stringToLocalDateTime("2026-06-13-23.59.00");
         var found = priceRepository.getPrice(localDateTime, productId, brandId);
         assertTrue(found.isEmpty());
@@ -64,7 +64,7 @@ class PriceRepositoryTest {
             "2020-06-15-11.00.01",
             "2020-06-15-15.59.59"
     })
-    void getPrice_with_date_without_conflicts_should_return_one_result(String applicationDate) {
+    void when_getPrice_with_date_without_conflicts_should_return_one_result(String applicationDate) {
         var localDateTime = dateConverter.stringToLocalDateTime(applicationDate);
         var found = priceRepository.getPrice(localDateTime, productId, brandId);
         assertEquals(1, found.size());
@@ -79,7 +79,7 @@ class PriceRepositoryTest {
             "2020-06-15-11.00.00",
             "2020-06-15-16.00.00"
     })
-    void getPrice_with_date_with_conflicts_should_return_many_result(String applicationDate) {
+    void when_getPrice_with_date_with_conflicts_should_return_many_result(String applicationDate) {
         var localDateTime = dateConverter.stringToLocalDateTime(applicationDate);
         var found = priceRepository.getPrice(localDateTime, productId, brandId);
         assertFalse(found.isEmpty());

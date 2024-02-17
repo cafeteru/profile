@@ -57,14 +57,14 @@ public class PriceServiceTest {
     }
 
     @Test
-    void getPrice_when_not_found_results_should_return_null() {
+    void when_getPrice_not_found_results_should_return_null() {
         when(priceRepository.getPrice(any(), anyInt(), anyInt())).thenReturn(Collections.emptyList());
         var result = priceService.getPrice(LocalDateTime.now(), 1, 1);
         assertNull(result);
     }
 
     @Test
-    void getPrice_when_found_one_result_should_return_it() {
+    void when_getPrice_found_one_result_should_return_it() {
         when(priceRepository.getPrice(any(), anyInt(), anyInt())).thenReturn(Collections.singletonList(price));
         var expected = priceMapper.toPriceRS(price);
         var result = priceService.getPrice(LocalDateTime.now(), 1, 1);
@@ -73,7 +73,7 @@ public class PriceServiceTest {
     }
 
     @Test
-    void getPrice_when_found_many_result_should_return_the_one_with_the_highest_priority() {
+    void when_getPrice_found_many_result_should_return_the_one_with_the_highest_priority() {
         var pricePriority = Price.builder()
                 .productId(10)
                 .brandId(10)

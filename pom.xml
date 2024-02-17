@@ -125,6 +125,7 @@
                     <excludes>
                         <exclude>**/dto/*</exclude>
                         <exclude>**/model/*</exclude>
+                        <exclude>**/ErrorController.class</exclude>
                         <exclude>**/ProfileApplication.class</exclude>
                     </excludes>
                 </configuration>

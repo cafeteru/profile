@@ -13,7 +13,7 @@ public class DateConverterTest {
     private final DateConverter dateConverter = new DateConverter();
 
     @Test
-    void stringToLocalDateTime_with_correct_date() {
+    void when_stringToLocalDateTime_get_correct_date_should_it_works() {
         String applicationDate = "2021-01-01-01.20.30";
         var result = dateConverter.stringToLocalDateTime(applicationDate);
         assertEquals(2021, result.getYear());
@@ -25,7 +25,7 @@ public class DateConverterTest {
     }
 
     @Test
-    void stringToLocalDateTime_with_null_date() {
+    void when_stringToLocalDateTime_get_a_null_date_should_return_an_exception() {
         try {
             dateConverter.stringToLocalDateTime(null);
             fail();
@@ -45,7 +45,7 @@ public class DateConverterTest {
             "2020-06-15 10:00:00",
             "invalid-date",
     })
-    void stringToLocalDateTime_with_invalid_dates(String applicationDate) {
+    void when_stringToLocalDateTime_get_a_invalid_date_should_return_an_exception(String applicationDate) {
         try {
             dateConverter.stringToLocalDateTime(applicationDate);
             fail();
@@ -55,14 +55,14 @@ public class DateConverterTest {
     }
 
     @Test
-    void localDateTimeToString_with_correct_date() {
+    void when_localDateTimeToString_get_correct_date_should_works() {
         var localDateTime = LocalDateTime.of(2021, 1, 1, 1, 20, 30);
         var result = dateConverter.localDateTimeToString(localDateTime);
         assertEquals("2021-01-01-01.20.30", result);
     }
 
     @Test
-    void localDateTimeToString_with_null_date() {
+    void when_localDateTimeToString_get_null_date_should_return_an_exception() {
         try {
             dateConverter.localDateTimeToString(null);
             fail();
