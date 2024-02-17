@@ -17,8 +17,8 @@ public class DateConverter {
             var formatter = DateTimeFormatter.ofPattern(PATTERN);
             return LocalDateTime.parse(applicationDate, formatter);
         } catch (NullPointerException | DateTimeParseException e) {
-            log.error("Invalid LocalDateTime: " + applicationDate, e);
-            throw new IllegalArgumentException("Invalid LocalDateTime: " + applicationDate, e);
+            log.error("Invalid LocalDateTime: " + applicationDate);
+            throw new IllegalArgumentException("Invalid LocalDateTime: " + applicationDate);
         }
     }
 
@@ -27,8 +27,8 @@ public class DateConverter {
             var formatter = DateTimeFormatter.ofPattern(PATTERN);
             return localDateTime.format(formatter);
         } catch (NullPointerException e) {
-            log.error("Invalid LocalDateTime: " + localDateTime, e);
-            throw new IllegalArgumentException("Invalid LocalDateTime: " + localDateTime, e);
+            log.error("Invalid LocalDateTime: " + localDateTime);
+            throw new IllegalArgumentException("Invalid LocalDateTime: " + localDateTime);
         }
     }
 }
