@@ -17,6 +17,7 @@
         <java.version>11</java.version>
         <lombok.version>1.18.30</lombok.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <rest-assured.version>5.4.0</rest-assured.version>
     </properties>
     <dependencies>
         <dependency>
@@ -65,24 +66,23 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>5.4.0</version>
+            <version>${rest-assured.version}</version>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.groovy</groupId>
-                    <artifactId>groovy</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.apache.groovy</groupId>
-                    <artifactId>groovy-xml</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
-            <artifactId>json-schema-validator</artifactId>
-            <version>5.3.1</version>
-            <scope>test</scope>
+            <artifactId>rest-assured-common</artifactId>
+            <version>${rest-assured.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-path</artifactId>
+            <version>${rest-assured.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>xml-path</artifactId>
+            <version>${rest-assured.version}</version>
         </dependency>
     </dependencies>
     <build>
