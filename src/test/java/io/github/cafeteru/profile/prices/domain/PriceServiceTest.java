@@ -28,11 +28,10 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 @Import({DateConverter.class, PriceMapperImpl.class})
 public class PriceServiceTest {
-    @Mock
-    private PriceRepository priceRepository;
+    private PriceService priceService;
 
     @Mock
-    private PriceService priceService;
+    private PriceRepository priceRepository;
 
     @Autowired
     private PriceMapper priceMapper;
